@@ -2,8 +2,6 @@ import numpy as np
 import os
 import gym
 from gym.spaces.box import Box
-#from baselines import bench
-#from baselines.common.atari_wrappers import make_atari, wrap_deepmind
 from core.envs.atari_wrappers import make_atari, wrap_deepmind
 
 try:
@@ -19,8 +17,6 @@ def make_env(args, rank):
         if is_atari:
             env = make_atari(args.game)
         env.seed(args.seed + rank)
-        #if log_dir is not None:
-            #env = bench.Monitor(env, os.path.join(args.log_dir, str(rank)))
         if is_atari:
             env = wrap_deepmind(env, frame_stack=True)
         return env
