@@ -57,7 +57,9 @@ You only need to modify some parameters in ```./utils/options.py``` to train a n
 - Python 3
 - [PyTorch >=v0.4.0](http://pytorch.org/)
 - [tensorboard-pytorch](https://github.com/lanpa/tensorboard-pytorch)
+- OpenCV
 - [OpenAI Gym](https://github.com/openai/gym)
+- [OpenAI Baselines](https://github.com/openai/baselines)
 *******
 
 
