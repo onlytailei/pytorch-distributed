@@ -13,8 +13,10 @@
 ## What is included?
 This repo currently contains the following agents:
 
-- Distributed DQN [[1]](https://openreview.net/forum?id=H1Dy---0Z)
-- Distributed DDPG [[2]](https://openreview.net/forum?id=SyZipzbCb)
+- [x] Distributed DQN [[1]](https://openreview.net/forum?id=H1Dy---0Z)
+- [x] Distributed DDPG [[2]](https://openreview.net/forum?id=SyZipzbCb)
+- [ ] TD3[3](https://arxiv.org/abs/1802.09477)
+- [ ] SAC[4](https://arxiv.org/abs/1801.01290)
 *******
 
 ## Code structure:
@@ -68,5 +70,9 @@ You only need to modify some parameters in ```./utils/options.py``` to train a n
 * [dgriff777/rl_a3c_pytorch](https://github.com/dgriff777/rl_a3c_pytorch)
 * [ShangtongZhang/DeepRL]( https://github.com/ShangtongZhang/DeepRL)
 
-This repo is developed together w/ [@onlytailei](https://github.com/onlytailei).
+
 *******
+[1][Distributed Prioritized Experience Replay](https://openreview.net/forum?id=H1Dy---0Z)    
+[2][Distributed Distributional Deterministic Policy Gradients ](https://openreview.net/forum?id=SyZipzbCb)    
+[3][Addressing Function Approximation Error in Actor-Critic Methods](https://arxiv.org/abs/1802.09477)    
+[4][Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor](https://arxiv.org/abs/1801.01290)    
