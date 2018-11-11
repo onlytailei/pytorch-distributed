@@ -15,8 +15,8 @@ This repo currently contains the following agents:
 
 - [x] Distributed DQN [[1]](https://openreview.net/forum?id=H1Dy---0Z)
 - [x] Distributed DDPG [[2]](https://openreview.net/forum?id=SyZipzbCb)
-- [ ] TD3[3](https://arxiv.org/abs/1802.09477)
-- [ ] SAC[4](https://arxiv.org/abs/1801.01290)
+- [ ] TD3 [[3]](https://arxiv.org/abs/1802.09477)
+- [ ] SAC [[4]](https://arxiv.org/abs/1801.01290)
 *******
 
 ## Code structure:
