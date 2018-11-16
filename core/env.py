@@ -1,5 +1,5 @@
-from utils.helpers import Experience            # NOTE: here state0 is always "None"
-import gym
+# NOTE: here state0 is always "None"
+from utils.helpers import Experience
 
 
 class Env(object):
@@ -10,13 +10,13 @@ class Env(object):
         self.num_envs_per_actor = args.num_envs_per_actor   # NOTE: to make sure diff seeds for each env, bit tricky
 
         # params
-        self.mode       = args.mode         # NOTE: save frames when mode=2
-        self.seed       = args.seed         # NOTE: so to give a different seed to each instance
+        self.mode = args.mode         # NOTE: save frames when mode=2
+        self.seed = args.seed         # NOTE: so to give a different seed to each instance
         # self.visualize  = args.visualize    # TODO: setup tensorboard stuff
 
         # env_params
-        self.env_type   = args.env_type
-        self.game       = args.game
+        self.env_type = args.env_type
+        self.game = args.game
 
         self.state_cha = args.state_cha
         self.state_hei = args.state_hei
@@ -33,11 +33,11 @@ class Env(object):
         self.exp_terminal1 = None
 
     def _get_experience(self):
-        return Experience(state0 = self.exp_state0, # NOTE: here state0 is always None
-                          action = self.exp_action,
-                          reward = self.exp_reward,
-                          state1 = self._preprocess_state(self.exp_state1),
-                          terminal1 = self.exp_terminal1)
+        return Experience(state0=self.exp_state0, # NOTE: here state0 is always None
+                          action=self.exp_action,
+                          reward=self.exp_reward,
+                          state1=self._preprocess_state(self.exp_state1),
+                          terminal1=self.exp_terminal1)
 
     def _preprocess_state(self, state):
         raise NotImplementedError("not implemented in base class")
@@ -47,11 +47,11 @@ class Env(object):
         raise NotImplementedError("not implemented in base class")
 
     @property
-    def action_shape(self): # for discrete envs, e.g., action_space=6,action_shape=1
+    def action_shape(self):  # for discrete envs, e.g., action_space=6,action_shape=1
         raise NotImplementedError("not implemented in base class")
 
     @property
-    def action_space(self): # for discrete envs, e.g., action_space=6,action_shape=1
+    def action_space(self):  # for discrete envs, e.g., action_space=6,action_shape=1
         raise NotImplementedError("not implemented in base class")
 
     def render(self):       # render using the original gl window

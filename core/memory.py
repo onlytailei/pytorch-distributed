@@ -1,6 +1,3 @@
-import numpy as np
-import torch.multiprocessing as mp
-
 class Memory(object):
     def __init__(self, args):
 

@@ -1,12 +1,11 @@
-import numpy as np
-import os
 import torch
-import torch.nn as nn
 import torch.multiprocessing as mp
 
 from utils.options import Options
-from utils.factory import GlobalLogsDict, ActorLogsDict, LearnerLogsDict, EvaluatorLogsDict
-from utils.factory import LoggersDict, ActorsDict, LearnersDict, EvaluatorsDict, TestersDict
+from utils.factory import GlobalLogsDict, ActorLogsDict, \
+    LearnerLogsDict, EvaluatorLogsDict
+from utils.factory import LoggersDict, ActorsDict, \
+    LearnersDict, EvaluatorsDict, TestersDict
 from utils.factory import EnvsDict, MemoriesDict, ModelsDict
 
 if __name__ == '__main__':
@@ -39,12 +38,20 @@ if __name__ == '__main__':
         opt.memory_params.terminal_shape = opt.terminal_shape
         global_memory = memory_prototype(opt.memory_params)
         # shared model
-        global_model = model_prototype(opt.model_params, opt.state_shape, opt.action_space, opt.action_shape)
-        if opt.model_file is not None: global_model.load_state_dict(torch.load(opt.model_file)) # this means finetuning on model_file
+        global_model = model_prototype(opt.model_params,
+                                       opt.state_shape,
+                                       opt.action_space,
+                                       opt.action_shape)
+
+        # this means finetuning on model_file
+        if opt.model_file is not None:
+            global_model.load_state_dict(torch.load(opt.model_file))
         global_model.to(torch.device('cuda'))   # TODO: set w/ args
-        # global_model.share_memory() # gradients are allocated lazily, so they are not shared here
+        # global_model.share_memory() # gradients are allocated lazily,
+        # so they are not shared here
         # optimizer
-        global_optimizer = None#opt.agent_params.optim(global_model.parameters())
+        # opt.agent_params.optim(global_model.parameters())
+        global_optimizer = None
         # logs
         global_logs = GlobalLogsDict[opt.agent_type]()
         actor_logs = ActorLogsDict[opt.agent_type]()
@@ -58,8 +65,7 @@ if __name__ == '__main__':
                              global_logs,
                              actor_logs,
                              learner_logs,
-                             evaluator_logs
-                            ))
+                             evaluator_logs))
         p.start()
         processes.append(p)
         # actor
@@ -72,8 +78,7 @@ if __name__ == '__main__':
                                  env_prototype,
                                  model_prototype,
                                  global_memory,
-                                 global_model
-                                ))
+                                 global_model))
             p.start()
             processes.append(p)
         # learner
@@ -86,8 +91,7 @@ if __name__ == '__main__':
                                  model_prototype,
                                  global_memory,
                                  global_model,
-                                 global_optimizer
-                                ))
+                                 global_optimizer))
             p.start()
             processes.append(p)
         # evaluator
@@ -98,8 +102,7 @@ if __name__ == '__main__':
                              evaluator_logs,
                              env_prototype,
                              model_prototype,
-                             global_model
-                            ))
+                             global_model))
         p.start()
         processes.append(p)
     elif opt.mode == 2:
